@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { mockInstructors } from '../../data/mockdata';
-import { getSentiment } from '../../utils/sentimentAnalysis'; // Sentiment analysis function
-import { Pie } from 'react-chartjs-2'; // ChartJS Pie chart
+import { getSentiment } from '../../utils/sentimentAnalysis'; 
+import { Pie } from 'react-chartjs-2'; 
 import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale } from 'chart.js';
 
 ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale);
