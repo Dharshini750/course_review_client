@@ -3,6 +3,7 @@ import { useAuth } from "../context/AuthContext";
 import Navbar from "../components/layout/NavBar";
 import Footer from "../components/layout/Footer";
 import EditableSection from "../components/userprofile/EditableSection";
+const API_URL = import.meta.env.VITE_API_URL;
 import {
   Edit,
   Save,
@@ -47,14 +48,16 @@ const UserProfile = () => {
       }
     };
     const fetchAvailableCourses = () => {
-      setAvailableCourses(mockCourses.map((course) => course.title)); // Populate course list
+      setAvailableCourses(mockCourses.map((course) => course.title));
     };
     fetchUserDetails();
     fetchAvailableCourses();
   }, [currentUser]);
+
   const handleEditToggle = () => {
     setIsEditing(!isEditing);
   };
+
   const handleSave = async () => {
     setIsEditing(false);
     try {
@@ -75,23 +78,28 @@ const UserProfile = () => {
       console.error("Error saving user details:", error);
     }
   };
+
   const handleAddSkill = () => {
     if (newSkill.trim() && !userDetails.skills.includes(newSkill)) {
       setUserDetails({ ...userDetails, skills: [...userDetails.skills, newSkill] });
       setNewSkill("");
     }
   };
+
   const handleRemoveSkill = (skill) => {
     setUserDetails({ ...userDetails, skills: userDetails.skills.filter((s) => s !== skill) });
   };
+
   const handleAddPreference = (course) => {
     if (course && !userDetails.preferences.includes(course)) {
       setUserDetails({ ...userDetails, preferences: [...userDetails.preferences, course] });
     }
   };
+
   const handleRemovePreference = (preference) => {
     setUserDetails({ ...userDetails, preferences: userDetails.preferences.filter((p) => p !== preference) });
   };
+
   if (!currentUser) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gray-50">
@@ -99,6 +107,7 @@ const UserProfile = () => {
       </div>
     );
   }
+
   return (
     <>
       <Navbar />
@@ -198,7 +207,7 @@ const UserProfile = () => {
                 <div>
                   {currentUser.role === "instructor" ? (
                     <select
-                      onChange={(e) => handleAddPreference(e.target.value)} // Reusing the same method
+                      onChange={(e) => handleAddPreference(e.target.value)}
                       className="w-full p-2 border border-gray-300 rounded mb-2"
                       defaultValue=""
                     >

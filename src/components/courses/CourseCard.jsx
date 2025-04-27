@@ -80,11 +80,7 @@ const CourseCard = ({ course }) => {
           <Link to={`/courses/${id}/reviews`} className="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 text-sm">
             View Reviews
           </Link>
-          {currentUser?.role === "student" && (
-            <Link to={`/courses/${id}/add-review`} className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 text-sm">
-              Add Review
-            </Link>
-          )}
+          
         </div>
       </div>
     </div>

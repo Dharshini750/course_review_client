@@ -9,7 +9,7 @@ import ReviewPage from "./pages/ReviewPage";
 import UserProfile from "./pages/UserProfile";
 import Login from "./pages/Login"; 
 import Signup from "./pages/Signup"; 
-import AddReviewPage from "./pages/AddReviewPage";
+
 function App() {
   return (
     <AuthProvider>
@@ -23,7 +23,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/courses" element={<Courses />} />
             <Route path="/courses/:courseId/reviews" element={<ReviewPage />} />
-            <Route path="/courses/:courseId/add-review" element={<AddReviewPage />} />
+            
             <Route path="/profile" element={<UserProfile />} /> 
           </Routes>
         </Router>

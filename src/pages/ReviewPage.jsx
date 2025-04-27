@@ -1,14 +1,12 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { mockCourses } from '../data/mockdata';
+import { mockCourses, mockReviews } from '../data/mockdata';
 import { ArrowLeft } from 'lucide-react';
-import { useReview } from '../context/ReviewContext';
 
 const ReviewPage = () => {
   const { courseId } = useParams();
-  const { reviews } = useReview();
   const course = mockCourses.find((c) => c.id === courseId);
-  const courseReviews = reviews.filter((review) => review.courseId === courseId);
+  const courseReviews = Array.isArray(mockReviews) ? mockReviews.filter((review) => review.courseId === courseId) : [];
 
   if (!course) {
     return (
@@ -24,6 +22,7 @@ const ReviewPage = () => {
       </div>
     );
   }
+
   return (
     <div className="pt-24 pb-16 bg-gray-50 min-h-screen">
       <div className="container mx-auto px-4">
@@ -59,14 +58,7 @@ const ReviewPage = () => {
             <p className="text-gray-600">Be the first to review this course!</p>
           </div>
         )}
-        <div className="mt-8 text-center">
-          <Link
-            to={`/courses/${courseId}/add-review`}
-            className="inline-block px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
-          >
-            Add Your Review
-          </Link>
-        </div>
+       
       </div>
     </div>
   );

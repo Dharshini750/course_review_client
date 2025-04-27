@@ -1,7 +1,10 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
+
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -17,6 +20,8 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     setError(null);
+
+    // Hardcoded admin login
     if (email === "admin@gmail.com" && password === "admin123") {
       const adminUser = {
         id: "admin-1",
@@ -30,7 +35,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     try {
-      const response = await fetch("${API_URL}/api/auth/login", {
+      const response = await fetch(`${API_URL}/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -49,6 +54,7 @@ export const AuthProvider = ({ children }) => {
         return false;
       }
     } catch (error) {
+      console.error("Login error:", error);
       setError("Login failed. Please try again.");
       return false;
     }
@@ -57,7 +63,7 @@ export const AuthProvider = ({ children }) => {
   const register = async (name, email, password, role = "instructor") => {
     setError(null);
     try {
-      const response = await fetch("${API_URL}/api/auth/signup", {
+      const response = await fetch(`${API_URL}/api/auth/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -76,6 +82,7 @@ export const AuthProvider = ({ children }) => {
         return false;
       }
     } catch (error) {
+      console.error("Registration error:", error);
       setError("Registration failed. Please try again.");
       return false;
     }

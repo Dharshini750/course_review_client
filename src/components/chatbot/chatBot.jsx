@@ -1,4 +1,5 @@
 import { useState } from "react";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,7 +12,7 @@ export default function Chatbot() {
     setMessages(newMessages);
     setInput("");
     try {
-      const response = await fetch("${API_URL}/api/chatbot", {
+      const response = await fetch(`${API_URL}/api/chatbot`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ query: input }),
@@ -24,7 +25,10 @@ export default function Chatbot() {
       }
     } catch (error) {
       console.error("Error:", error);
-      setMessages((prev) => [...prev, { type: "bot", text: "Something went wrong. Please try again!" }]);
+      setMessages((prev) => [
+        ...prev,
+        { type: "bot", text: "Something went wrong. Please try again!" },
+      ]);
     }
   };
 
@@ -47,7 +51,7 @@ export default function Chatbot() {
               <div
                 key={idx}
                 className={`p-3 rounded ${msg.type === "user" ? "bg-blue-200 self-end" : "bg-gray-200"}`}
-                style={{ color: "black" }} 
+                style={{ color: "black" }}
               >
                 {msg.text}
               </div>
@@ -55,15 +59,15 @@ export default function Chatbot() {
           </div>
           <div className="mt-4 flex">
             <input
-              className="flex-grow p-3 border rounded-l w-[40%]" 
-              style={{ color: "black" }} 
+              className="flex-grow p-3 border rounded-l w-[40%]"
+              style={{ color: "black" }}
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask me anything..."
               onKeyDown={(e) => e.key === "Enter" && handleSend()}
             />
             <button
-              className="bg-yellow-500 text-black px-6 py-3 rounded-r hover:bg-yellow-600" 
+              className="bg-yellow-500 text-black px-6 py-3 rounded-r hover:bg-yellow-600"
               onClick={handleSend}
             >
               Send
@@ -72,7 +76,7 @@ export default function Chatbot() {
         </div>
       </div>
       <button
-        className="fixed bottom-5 right-5 bg-yellow-600 text-black rounded-full w-16 h-16 text-3xl shadow-lg hover:bg-yellow-700" 
+        className="fixed bottom-5 right-5 bg-yellow-600 text-black rounded-full w-16 h-16 text-3xl shadow-lg hover:bg-yellow-700"
         onClick={() => setIsOpen(!isOpen)}
         title="Chatbot"
       >
