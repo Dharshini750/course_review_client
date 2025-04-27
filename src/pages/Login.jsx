@@ -46,9 +46,7 @@ const Login = () => {
               <CheckCircle className="h-16 w-16 text-green-500 animate-pulse" />
             </div>
             <h3 className="text-2xl font-bold text-gray-800">Login Successful!</h3>
-            <p className="text-gray-600 mt-4">
-              Redirecting to your dashboard...
-            </p>
+            <p className="text-gray-600 mt-4">Redirecting to your dashboard...</p>
           </div>
         </div>
       )}
@@ -58,9 +56,7 @@ const Login = () => {
             <BookOpen className="h-12 w-12 text-gray-600" />
           </div>
           <h2 className="mt-6 text-3xl font-bold text-gray-800">Welcome back</h2>
-          <p className="mt-2 text-sm text-gray-600">
-            Please sign in to your account
-          </p>
+          <p className="mt-2 text-sm text-gray-600">Please sign in to your account</p>
         </div>
         {error && (
           <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-md">
@@ -132,6 +128,11 @@ const Login = () => {
               Sign up
             </Link>
           </p>
+        </div>
+        <div className="text-center mt-4">
+          <Link to="/" className="font-medium text-gray-600 hover:text-gray-500">
+            Back to Home
+          </Link>
         </div>
       </div>
     </div>
