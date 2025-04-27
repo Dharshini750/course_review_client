@@ -5,7 +5,7 @@ export const fetchInstructorSentiment = createAsyncThunk(
   "instructor/fetchSentiment",  
   async (instructorId) => {
  
-    const response = await axios.get(`http://localhost:5000/api/instructors/${instructorId}`);
+    const response = await axios.get(`${API_URL}/api/instructors/${instructorId}`);
     return response.data; 
   }
 );

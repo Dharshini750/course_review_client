@@ -37,7 +37,7 @@ const UserProfile = () => {
     const fetchUserDetails = async () => {
       if (!currentUser) return;
       try {
-        const response = await fetch(`http://localhost:5000/api/users/${currentUser.email}`);
+        const response = await fetch(`${API_URL}/api/users/${currentUser.email}`);
         if (response.ok) {
           const data = await response.json();
           setUserDetails(data);
@@ -58,7 +58,7 @@ const UserProfile = () => {
   const handleSave = async () => {
     setIsEditing(false);
     try {
-      const response = await fetch(`http://localhost:5000/api/users/${currentUser.email}`, {
+      const response = await fetch(`${API_URL}/api/users/${currentUser.email}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

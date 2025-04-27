@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
+      const response = await fetch("${API_URL}/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -57,7 +57,7 @@ export const AuthProvider = ({ children }) => {
   const register = async (name, email, password, role = "instructor") => {
     setError(null);
     try {
-      const response = await fetch("http://localhost:5000/api/auth/signup", {
+      const response = await fetch("${API_URL}/api/auth/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
