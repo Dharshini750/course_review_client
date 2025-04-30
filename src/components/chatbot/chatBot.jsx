@@ -12,7 +12,7 @@ export default function Chatbot() {
     setMessages(newMessages);
     setInput("");
     try {
-      const response = await fetch(`${API_URL}/api/chatbot`, {
+      const response = await fetch(`${API_URL}/api/chatbot/conversation`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ query: input }),
